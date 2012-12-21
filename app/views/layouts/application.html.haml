@@ -34,6 +34,8 @@
           .well.sidebar-nav
             %ul.nav.nav-list
               %li.nav-header Sidebar
+              %li= link_to 'Organizations', organizations_path
+              %li= link_to 'Sub Units', sub_units_path
         .span9
           = yield
 
