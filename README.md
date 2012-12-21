@@ -5,4 +5,4 @@ Rails Nested Attributes with Scoped Uniqueness Validation of Association
 
 Sample application to show a complex form with nested attributes *and* a scoped validation of associated records.
 
-Read more about it on my blog.
+[Read more about it on my blog](http://wp.me/pfcFU-4f).
