@@ -1,5 +1,32 @@
-%h1 New organization
+- model_class = Organization
+.page-header
+  %h1=t '.title', :default => t('helpers.titles.new', :model => model_class.model_name.human, :default => "New #{model_class.model_name.human}")
 
-= render 'form'
+= form_for @organization, :html => { :class => 'form-horizontal' } do |f|
+  .row-fluid
+    .span6
+      .well
+        %h2 Organization Info
+        .control-group
+          = f.label :name, :class => 'control-label'
+          .controls
+            = f.text_field :name, :class => 'text_field input-medium'
 
-= link_to 'Back', organizations_path
+    .span6
+      .well.sub-units
+        %h2 SubUnit Info
+        = f.fields_for :sub_units do |f_sub|
+          = render 'sub_unit_fields', f: f_sub
+
+        .control-group.add-sub-unit
+          .controls
+            = link_to 'add a SubUnit', '#', class: 'btn btn-primary add-sub-unit-button'
+
+        #new-sub-unit-fields.hidden
+          = f.fields_for :sub_units, SubUnit.new, child_index: 'new_sub_unit' do |f_sub|
+            = render 'sub_unit_fields', f: f_sub
+
+    .span12
+      .form-actions
+        = link_to 'Create Organization', '#', class: 'btn btn-primary create-organization-button'
+        = link_to t('.cancel', :default => t("helpers.links.cancel")), organizations_path, :class => 'btn'

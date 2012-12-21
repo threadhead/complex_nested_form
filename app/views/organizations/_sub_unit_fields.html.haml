@@ -1,0 +1,6 @@
+.control-group
+  = f.label :name, class: 'control-label'
+  .controls.sub-unit
+    = f.text_field :name, class: 'input-mini'
+    = f.hidden_field :_destroy
+    = link_to "remove", '#', class: 'btn btn-warning btn-mini remove-sub-unit-button'

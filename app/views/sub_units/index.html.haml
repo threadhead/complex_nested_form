@@ -1,21 +1,23 @@
-%h1 Listing sub_units
-
-%table
-  %tr
-    %th Organization
-    %th Name
-    %th
-    %th
-    %th
-
-  - @sub_units.each do |sub_unit|
+- model_class = SubUnit
+.page-header
+  %h1=t '.title', :default => model_class.model_name.human.pluralize
+%table.table.table-striped
+  %thead
     %tr
-      %td= sub_unit.organization
-      %td= sub_unit.name
-      %td= link_to 'Show', sub_unit
-      %td= link_to 'Edit', edit_sub_unit_path(sub_unit)
-      %td= link_to 'Destroy', sub_unit, method: :delete, data: { confirm: 'Are you sure?' }
+      %th= model_class.human_attribute_name(:id)
+      %th= model_class.human_attribute_name(:organization_id)
+      %th= model_class.human_attribute_name(:name)
+      %th= model_class.human_attribute_name(:created_at)
+      %th=t '.actions', :default => t("helpers.actions")
+  %tbody
+    - @sub_units.each do |sub_unit|
+      %tr
+        %td= link_to sub_unit.id, sub_unit_path(sub_unit)
+        %td= sub_unit.organization_id
+        %td= sub_unit.name
+        %td=l sub_unit.created_at
+        %td
+          = link_to t('.edit', :default => t("helpers.links.edit")), edit_sub_unit_path(sub_unit), :class => 'btn btn-mini'
+          = link_to t('.destroy', :default => t("helpers.links.destroy")), sub_unit_path(sub_unit), :method => :delete, :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')) }, :class => 'btn btn-mini btn-danger'
 
-%br
-
-= link_to 'New Sub unit', new_sub_unit_path
+= link_to t('.new', :default => t("helpers.links.new")), new_sub_unit_path, :class => 'btn btn-primary'
