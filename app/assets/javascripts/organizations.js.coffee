@@ -21,3 +21,16 @@ jQuery ->
   remove_sub_unit = (link) ->
     $(link).prev("input[type=hidden]").val("1")
     $(link).closest(".control-group").hide()
+
+
+  $('a.create-organization-button').click ->
+    console.log 'cob'
+    # remove duplicate form values, then submit the form
+    uniqueNames = []
+    $.each($('.controls.sub-unit input[type=text]'), (i, el) ->
+        if $.inArray($(@).val(), uniqueNames) == -1
+          uniqueNames.push($(@).val())
+        else
+          $(@).parent().find('input[type=hidden]').val("true")
+      )
+    $(@).closest('form').submit()
