@@ -7,7 +7,7 @@ jQuery ->
       remove_sub_unit(@)
     )
 
-  $('.add-sub-unit-button').click ->
+  $('a.add-sub-unit-button').click ->
     add_sub_unit(@)
 
   add_sub_unit = (link) ->
@@ -24,7 +24,6 @@ jQuery ->
 
 
   $('a.create-organization-button').click ->
-    console.log 'cob'
     # remove duplicate form values, then submit the form
     uniqueNames = []
     $.each($('.controls.sub-unit input[type=text]'), (i, el) ->
